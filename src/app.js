@@ -23,14 +23,14 @@ app.use(express.static(publicDirectory));
 app.get("", (req, res) => {
   res.render("index", {
     title: "Weather",
-    name: "Artem Zimin"
+    name: "Artem Zimin",
   });
 });
 
 app.get("/about", (req, res) => {
   res.render("about", {
     title: "About Me",
-    name: "Artem Zimin"
+    name: "Artem Zimin",
   });
 });
 
@@ -38,14 +38,14 @@ app.get("/help", (req, res) => {
   res.render("help", {
     helpText: "Are you lost, darling?",
     title: "Help",
-    name: "Artem Zimin"
+    name: "Artem Zimin",
   });
 });
 
 app.get("/weather", (req, res) => {
   if (req.query.address === undefined) {
     res.send({
-      error: "You must provide an address"
+      error: "You must provide an address",
     });
     return;
   }
@@ -55,7 +55,7 @@ app.get("/weather", (req, res) => {
     (error, { latitude, longitude, location } = {}) => {
       if (error) {
         res.send({
-          error
+          error,
         });
         return;
       }
@@ -63,7 +63,7 @@ app.get("/weather", (req, res) => {
       forecast(latitude, longitude, (error, forecastData) => {
         if (error) {
           res.send({
-            error
+            error,
           });
           return;
         }
@@ -71,7 +71,7 @@ app.get("/weather", (req, res) => {
         res.send({
           address: req.query.address,
           forecast: forecastData,
-          location
+          location,
         });
       });
     }
@@ -87,13 +87,13 @@ app.get("/weather", (req, res) => {
 app.get("/products", (req, res) => {
   if (req.query.search === undefined) {
     res.send({
-      error: "You must provide a search term"
+      error: "You must provide a search term",
     });
     return;
   }
 
   res.send({
-    products: []
+    products: [],
   });
 });
 
@@ -101,7 +101,7 @@ app.get("/help/*", (req, res) => {
   res.render("404", {
     errorMessage: "This is some helpful text",
     name: "Artem Zimin",
-    title: "404"
+    title: "404",
   });
 });
 
@@ -109,7 +109,7 @@ app.get("*", (req, res) => {
   res.render("404", {
     errorMessage: "Page not found",
     name: "Artem Zimin",
-    title: "404"
+    title: "404",
   });
 });
 
